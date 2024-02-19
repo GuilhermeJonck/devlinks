@@ -1,0 +1,188 @@
+* {
+  /*Reset Padrão*/
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /*Medida da box == Medida da borda*/
+}
+
+:root {
+  /*Nome default do html*/
+  --text-color: white; /*Variável criada*/
+  --bg-url: url(./assets/bg-mobile.jpg);
+  --stroke-color: rgba(255, 255, 255, 0.5);
+  --surface-color: rgba(255, 255, 255, 0.1);
+  --surface-color-hover: rgba(255, 255, 255, 0.05);
+  --highlight-color: rgba(255, 255, 255, 0.2);
+  --switch-bg-url: url(./assets/moon-stars.svg);
+}
+
+.light {
+  --text-color: black;
+  --bg-url: url(./assets/bg-mobile-light.jpg);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --surface-color-hover: rgba(0, 0, 0, 0.02);
+  --highlight-color: rgba(0, 0, 0, 0.1);
+  --switch-bg-url: url(./assets/sun.svg);
+}
+body {
+  background: var(--bg-url) top center/cover;
+  height: 100vh;
+}
+
+body * {
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+}
+/**/
+#container {
+  width: 100%;
+  max-width: 588px;
+  /*padding-top: 56px; ou  */
+  margin: 56px auto 0px;
+  padding: 0 24px;
+}
+
+#profile {
+  text-align: center;
+  padding: 24px;
+}
+#profile img {
+  width: 112px; /*Altura geralmente não é definida( Segue o conteúdo da página )*/
+  border-radius: 50%;
+}
+
+#profile p {
+  font-weight: 500; /*Peso da Fonte*/
+  line-height: 24px; /*Altura da linha*/
+  margin-top: 0px; /*Distancia entre nome e a Img*/
+}
+
+/*Switch*/
+#switch {
+  position: relative /*Posição relativa  ao switch no absoluto*/;
+  width: 64px;
+
+  margin: 4px auto; /*Alinhamento de display block*/
+}
+#switch button {
+  width: 32px;
+  height: 32px;
+  background: white var(--switch-bg-url) no-repeat center;
+  border-radius: 50%;
+
+  position: absolute; /*Sobreposição de camadas*/
+  z-index: 1; /*Alterar layer do button*/
+  top: 50%; /*Alinhando*/
+  left: 0;
+  transform: translateY(-50%); /*Alinhando*/
+
+  animation: slide-out 0.2s;
+}
+
+.light #switch button {
+  animation: slide-in 0.2s forwards;
+}
+
+#switch button:hover {
+  outline: 8px solid var(--highlight-color);
+}
+
+#switch span {
+  display: block;
+  width: 64px;
+  height: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+}
+/*Links*/
+ul {
+  list-style: none; /*Tirar pontos da lista*/
+
+  display: flex; /*Elementos da caixa um ao lado do outro*/
+  flex-direction: column; /* em coluna ou um abaixo do outro*/
+  gap: 16px; /* Distância entre os elementos da lista */
+
+  padding: 24px 0;
+}
+
+ul li a {
+  /*Alinhamento display flex*/
+  display: flex;
+  justify-content: center; /*Centralizar contúdo*/
+  align-items: center; /*Centralizadr conteúdo na main do display flex*/
+  padding: 16px 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+
+  border-radius: 8px; /*arredondar bordas*/
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  text-decoration: none; /*Removendo underline do texto*/
+  font-weight: 500;
+
+  transition: background 0.2s;
+}
+/*pseudo-selector*/
+ul li a:hover {
+  background-color: var(--surface-color-hover);
+  border: 1.5px solid var(--text-color);
+}
+
+#social-links {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0;
+  font-size: 24px;
+}
+#social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px; /*distancia dos icones */
+  border-radius: 50%; /*Arredondar */
+
+  transition: background 0.2s;
+}
+#social-links a:hover {
+  background: var(--highlight-color);
+}
+
+footer {
+  padding: 24px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+/*Media queries*/
+@media (min-width: 700px) {
+  :root {
+    --bg-url: url(./assets/bg-desktop.jpg);
+  }
+  .light {
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+}
+
+/* animation/Mover elemento */
+@keyframes slide-in {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+/* animation/Mover elemento */
+@keyframes slide-out {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
+}
